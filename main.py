@@ -9,11 +9,16 @@ def main():
     """
     Main function for the application
     """
+    print("🧠🎴 Welcome to the Memory Match Challenge! 🎴🧠\n")
     board = create_board()
     hidden_board = generate_hidden_board()
     revealed = set()
     
-    play_turn(board, hidden_board, revealed)
+    while len(revealed) < 16:
+        play_turn(board, hidden_board, revealed)
+    print_board(board)
+    print("\n")
+    print("🎉 You found all the pairs! 🎉")
 
 def create_board(size=4):
     board = [['*' for _ in range (size)] for _ in range (size)]
@@ -53,9 +58,10 @@ def reveal_card(visible_board, hidden_board, row, col):
     
 def play_turn(board, hidden_board, revealed):
     print_board(board)
-
+    print("\n")
     first = input("Enter the first card (e.g., A1): ")
     second = input("Enter the second card (e.g., B2): ")
+    print("\n")
 
     r1, c1 = parse_position(first)
     r2, c2 = parse_position(second)
@@ -69,11 +75,13 @@ def play_turn(board, hidden_board, revealed):
     print_board(board)
 
     if hidden_board[r1][c1] == hidden_board[r2][c2]:
-        print("It's a match!")
+        print(f"🎉 It's a match! You found two '{hidden_board[r1][c1]}' cards!")
+        print("\n---------------------------")
         revealed.add((r1, c1))
         revealed.add((r2, c2))
     else:
-        print("Not a match.")
+        print(f"🙈 Oops! {hidden_board[r1][c1]} doesn't match {hidden_board[r2][c2]}. Keep trying!")
+        print("\n---------------------------")
         time.sleep(2)
         if (r1, c1) not in revealed:
             board[r1][c1] = "*"
