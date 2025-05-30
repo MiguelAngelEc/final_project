@@ -1,5 +1,5 @@
 
-# 🎮 Board Layout# 🧠 Memory Match Game
+# 🧠 Memory Match Game
 
 ## 🎓 Stanford Code in Place 2025 — Final Project
 
@@ -88,15 +88,6 @@ final_project/
 This game was created as my final project for the incredible Code in Place 2025 course, taught by Prof. Maryam and supported by a global community of educators and learners.
 
 Thank you to the whole C.I.P. team! 🌟
-- 4x4 grid (16 cards total, 8 pairs)
-- Rows are labeled A to D
-- Columns are labeled 1 to 4
-
-### Valid Input Examples
-✅ A1, B3, D4, C2
-
-### Invalid Input Examples
-❌ a5, E2, 11, X9
 
 ## 💡 Tips
 - Pay attention to the card positions
