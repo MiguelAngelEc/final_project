@@ -10,6 +10,34 @@ def main():
     Main function for the application
     """
     print("🧠🎴 Welcome to the Memory Match Challenge! 🎴🧠\n")
+    print("""
+    🧠 Welcome to the Memory Game!
+
+    🎯 Goal:
+    
+    Match all the hidden pairs by remembering their positions.
+
+    🕹️ How to Play:
+    
+    1️⃣ Enter two positions per turn (e.g., A1 and B2).
+    2️⃣ If the cards match, they stay revealed.
+    3️⃣ If not, they will be hidden again after 2 seconds.
+    4️⃣ You can't pick the same card twice in a turn.
+
+    🎮 Board:
+    
+    - The board is a 4x4 grid.
+    - Rows are labeled A to D.
+    - Columns are labeled 1 to 4.
+
+    ✅ Valid Inputs: A1, B3, D4, etc.
+    ❌ Invalid Inputs: a5, E2, 11, etc.
+
+    💡 Tip:
+    Pay attention and remember the card positions to win faster!
+
+    Good luck! 🍀
+    """)
     board = create_board()
     hidden_board = generate_hidden_board()
     revealed = set()
@@ -62,12 +90,19 @@ def play_turn(board, hidden_board, revealed):
     first = input("Enter the first card (e.g., A1): ")
     second = input("Enter the second card (e.g., B2): ")
     print("\n")
+    
+    valid_positions = [f"{chr(65 + i)}{j+1}" for i in range(4) for j in range(4)]
+    
+    if first.upper() not in valid_positions or second.upper() not in valid_positions:
+        print(f"⚠️ Invalid input: '{first}' or '{second}' is not a valid position. Please enter positions like A1, B2, etc.\n")
+        return
 
     r1, c1 = parse_position(first)
     r2, c2 = parse_position(second)
 
     if (r1, c1) == (r2, c2):
-        print("You cannot choose the same card twice. Try again.")
+        print("⚠️ You picked the same card twice! Please choose two different cards. 🔁 \n")
+
         return
 
     board[r1][c1] = hidden_board[r1][c1]
@@ -76,12 +111,12 @@ def play_turn(board, hidden_board, revealed):
 
     if hidden_board[r1][c1] == hidden_board[r2][c2]:
         print(f"🎉 It's a match! You found two '{hidden_board[r1][c1]}' cards!")
-        print("\n---------------------------")
+        print("\n---------------------------\n")
         revealed.add((r1, c1))
         revealed.add((r2, c2))
     else:
         print(f"🙈 Oops! {hidden_board[r1][c1]} doesn't match {hidden_board[r2][c2]}. Keep trying!")
-        print("\n---------------------------")
+        print("\n---------------------------\n")
         time.sleep(2)
         if (r1, c1) not in revealed:
             board[r1][c1] = "*"
