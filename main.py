@@ -11,11 +11,13 @@ def main():
     board = create_board()
     hidden_board = generate_hidden_board()
     
-    print("Tablero de juego (cartas ocultas):")
+    # Simula que el usuario ingresa "C2"
+    user_input = "C2"
+    row, col = parse_position(user_input)
+    reveal_card(board, hidden_board, row, col)
+
+    print("\nVisible board AFTER revealing C2:")
     print_board(board)
-    
-    print("\nTablero con las cartas (solo para pruebas):")
-    print_board(hidden_board)
 
 def create_board(size=4):
     board = [['*' for _ in range (size)] for _ in range (size)]
@@ -44,6 +46,14 @@ def generate_hidden_board(size=4):
             index += 1
         board.append(row)
     return board
+
+def parse_position(pos):
+    row = ord(pos[0].upper()) - 65
+    col = int(pos[1]) - 1
+    return row, col
+
+def reveal_card(visible_board, hidden_board, row, col):
+    visible_board[row][col] = hidden_board[row][col]
     
 
 if __name__ == "__main__":
