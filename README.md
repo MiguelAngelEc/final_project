@@ -78,10 +78,11 @@ Printing formatted boards dynamically
 
 ## 📂 Project Files
 
+```bash
 final_project/
 ├── main.py      # Main Python file with all logic
 └── README.md           # Game instructions and documentation
-
+```
 
 ## 🙌 Acknowledgments
 This game was created as my final project for the incredible Code in Place 2025 course, taught by Prof. Maryam and supported by a global community of educators and learners.
