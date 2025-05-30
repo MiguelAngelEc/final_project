@@ -1,5 +1,5 @@
 
-## 🎮 Board Layout# 🧠 Memory Match Game
+# 🎮 Board Layout# 🧠 Memory Match Game
 
 ## 🎓 Stanford Code in Place 2025 — Final Project
 
@@ -63,7 +63,9 @@ D   *   *   *   *
 
 🎉🎉🎉 CONGRATULATIONS! 🎉🎉🎉
 You found all the pairs!
-🧠 What I Learned
+
+```
+## 🧠 What I Learned
 Structuring code using functions
 
 Handling user input and validation
@@ -74,18 +76,14 @@ Applying control flow with if/else
 
 Printing formatted boards dynamically
 
-📂 Project Files
+## 📂 Project Files
 
-bash
-Copiar
-Editar
 final_project/
 ├── main.py      # Main Python file with all logic
 └── README.md           # Game instructions and documentation
 
 
-
-🙌 Acknowledgments
+## 🙌 Acknowledgments
 This game was created as my final project for the incredible Code in Place 2025 course, taught by Prof. Maryam and supported by a global community of educators and learners.
 
 Thank you to the whole C.I.P. team! 🌟
