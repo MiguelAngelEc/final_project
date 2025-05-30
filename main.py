@@ -3,6 +3,7 @@ Main script for the application
 """
 
 import random 
+import time
 
 def main():
     """
@@ -10,14 +11,9 @@ def main():
     """
     board = create_board()
     hidden_board = generate_hidden_board()
+    revealed = set()
     
-    # Simula que el usuario ingresa "C2"
-    user_input = "C2"
-    row, col = parse_position(user_input)
-    reveal_card(board, hidden_board, row, col)
-
-    print("\nVisible board AFTER revealing C2:")
-    print_board(board)
+    play_turn(board, hidden_board, revealed)
 
 def create_board(size=4):
     board = [['*' for _ in range (size)] for _ in range (size)]
@@ -54,6 +50,35 @@ def parse_position(pos):
 
 def reveal_card(visible_board, hidden_board, row, col):
     visible_board[row][col] = hidden_board[row][col]
+    
+def play_turn(board, hidden_board, revealed):
+    print_board(board)
+
+    first = input("Enter the first card (e.g., A1): ")
+    second = input("Enter the second card (e.g., B2): ")
+
+    r1, c1 = parse_position(first)
+    r2, c2 = parse_position(second)
+
+    if (r1, c1) == (r2, c2):
+        print("You cannot choose the same card twice. Try again.")
+        return
+
+    board[r1][c1] = hidden_board[r1][c1]
+    board[r2][c2] = hidden_board[r2][c2]
+    print_board(board)
+
+    if hidden_board[r1][c1] == hidden_board[r2][c2]:
+        print("It's a match!")
+        revealed.add((r1, c1))
+        revealed.add((r2, c2))
+    else:
+        print("Not a match.")
+        time.sleep(2)
+        if (r1, c1) not in revealed:
+            board[r1][c1] = "*"
+        if (r2, c2) not in revealed:
+            board[r2][c2] = "*"
     
 
 if __name__ == "__main__":
